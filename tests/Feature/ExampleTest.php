@@ -5,3 +5,9 @@ test('the application returns a successful response', function () {
 
     $response->assertStatus(200);
 });
+
+test('the storefront product page returns a successful response', function () {
+    $response = $this->get('/shop/pashmina-satin-moonlight');
+
+    $response->assertStatus(200);
+});
