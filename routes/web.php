@@ -7,10 +7,15 @@ Route::get('/', [StorefrontController::class, 'home'])->name('home');
 
 Route::get('/shop', [StorefrontController::class, 'shop'])->name('products.index');
 Route::get('/collection', [StorefrontController::class, 'collection'])->name('collection.index');
+Route::get('/categories', [StorefrontController::class, 'categories'])->name('categories.index');
+Route::get('/categories/{slug}', [StorefrontController::class, 'category'])->name('categories.show');
 Route::view('/about', 'pages.catalog.about')->name('about');
 Route::view('/contact', 'pages.catalog.contact')->name('contact');
 Route::post('/contact', [StorefrontController::class, 'submitContact'])->name('contact.submit');
 Route::get('/shop/{slug}', [StorefrontController::class, 'product'])->name('products.show');
+Route::get('/reviews', [StorefrontController::class, 'reviews'])->name('reviews.index');
+Route::get('/chat', [StorefrontController::class, 'chat'])->name('chat.index');
+Route::post('/chat', [StorefrontController::class, 'submitChat'])->name('chat.submit');
 
 Route::view('/cart', 'pages.customer.cart')->name('cart.index');
 Route::view('/checkout', 'pages.customer.checkout')->name('checkout.index');

@@ -1,6 +1,32 @@
 <?php
 
 return [
+    'categories' => [
+        [
+            'slug' => 'pashmina',
+            'name' => 'Pashmina',
+            'description' => 'Flowy silhouettes for effortless everyday styling.',
+            'tone' => 'from-[#d8c4bd] via-[#efe3d9] to-[#b99a62]',
+        ],
+        [
+            'slug' => 'voal',
+            'name' => 'Voal',
+            'description' => 'Lightweight, breathable, and easy to style.',
+            'tone' => 'from-[#e8cfcf] via-[#f4e7e2] to-[#c58f9d]',
+        ],
+        [
+            'slug' => 'square',
+            'name' => 'Square',
+            'description' => 'Timeless square scarves for every occasion.',
+            'tone' => 'from-[#b99a62] via-[#d2b99b] to-[#6f5146]',
+        ],
+        [
+            'slug' => 'inner',
+            'name' => 'Inner',
+            'description' => 'Comfortable essentials to keep every look in place.',
+            'tone' => 'from-[#d7c1b4] via-[#f4e9dd] to-[#a88b7b]',
+        ],
+    ],
     'products' => [
         [
             'id' => 1,
@@ -85,6 +111,29 @@ return [
             'color' => 'from-[#c6b3c6] via-[#eee2ec] to-[#8f7895]',
             'image' => 'https://images.unsplash.com/photo-1590736969955-71cc94901144?auto=format&fit=crop&w=900&q=85',
             'description' => 'Voal ringan berwarna mauve yang memberi sentuhan lembut dan modern pada setiap outfit.',
+        ],
+    ],
+    'reviews' => [
+        [
+            'name' => 'Nadia Rahma',
+            'initials' => 'NR',
+            'rating' => 5,
+            'product' => 'Pashmina Satin Moonlight',
+            'quote' => 'Bahannya jatuh dan tidak mudah kusut. Warnanya juga persis seperti foto.',
+        ],
+        [
+            'name' => 'Alya Putri',
+            'initials' => 'AP',
+            'rating' => 5,
+            'product' => 'Voal Paris Rose',
+            'quote' => 'Ringan dipakai seharian dan packing-nya cantik. Pasti repeat order.',
+        ],
+        [
+            'name' => 'Salsa Mahira',
+            'initials' => 'SM',
+            'rating' => 4,
+            'product' => 'Square Silk Earth',
+            'quote' => 'Motifnya elegan dan mudah dipadukan untuk acara formal maupun casual.',
         ],
     ],
 ];
