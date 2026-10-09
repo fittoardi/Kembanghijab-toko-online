@@ -34,23 +34,20 @@
 <body class="min-h-screen antialiased">
 
     {{-- Announcement Bar --}}
-    <div class="bg-[#6f5146] px-4 py-2 text-center text-xs font-medium tracking-wide text-white">
-        Free shipping for selected orders · Discover the latest collection
+    <div class="border-b border-black bg-[#faa21f] px-4 py-2 text-center text-sm text-black">
+        KIN. STORE. COUPONS. &nbsp; Free shipping over Rp300.000
     </div>
 
     {{-- Navbar --}}
     @include('layouts.components.navbar')
 
     {{-- Main --}}
-    <main class="min-h-screen pb-20 lg:pb-0">
+    <main id="main-content" class="min-h-screen">
         @yield('content')
     </main>
 
     {{-- Footer --}}
     @include('layouts.components.footer')
-
-    {{-- Mobile Navigation --}}
-    @include('layouts.components.mobile-nav')
 
     @stack('scripts')
 

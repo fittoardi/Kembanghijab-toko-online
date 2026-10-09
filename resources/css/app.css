@@ -1,15 +1,16 @@
 @import "tailwindcss";
 
 @theme {
-    --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
-
-    --color-kh-cream: #f8f3ec;
-    --color-kh-beige: #e9ded2;
-    --color-kh-pink: #e8cfcf;
-    --color-kh-brown: #6f5146;
-    --color-kh-gold: #b99a62;
-    --color-kh-purple: #a99bb8;
-    --color-kh-dark: #2e2927;
+    --font-sans: "Courier New", ui-monospace, monospace;
+    --font-arcade: "Courier New", ui-monospace, monospace;
+    --color-arcade-cream: #f3e5df;
+    --color-ink-black: #000000;
+    --color-pixel-gray: #e5e7eb;
+    --color-charcoal: #333333;
+    --color-carbon: #151515;
+    --color-muted-gray: #737373;
+    --color-marquee-orange: #faa21f;
+    --color-buy-green: #128e44;
 }
 
 /* =========================================
@@ -21,26 +22,68 @@ html {
 }
 
 body {
-    background:
-        radial-gradient(
-            circle at 10% 10%,
-            rgba(232, 207, 207, 0.28),
-            transparent 28%
-        ),
-        radial-gradient(
-            circle at 90% 20%,
-            rgba(185, 154, 98, 0.12),
-            transparent 25%
-        ),
-        #f8f3ec;
+    background: #f3e5df;
+    color: #000;
+    font-family: var(--font-arcade);
+    font-size: 14px;
+    line-height: 1.5;
+}
 
-    color: #2e2927;
+h1, h2, h3, h4, button, a, input, textarea, select {
+    font-family: var(--font-arcade);
+}
 
-    font-family:
-        "Inter",
-        ui-sans-serif,
-        system-ui,
-        sans-serif;
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
+    outline: 2px solid #faa21f;
+    outline-offset: 2px;
+}
+
+.arcade-shell {
+    border: 1px solid #000;
+    background: #f3e5df;
+}
+
+.arcade-card {
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    background: #f3e5df;
+    padding: 12px;
+}
+
+.arcade-button {
+    border: 1px solid #000;
+    border-radius: 6px;
+    box-shadow: inset 0 1px 0 #f3e5df;
+    padding: 8px 12px;
+    font-size: 14px;
+    line-height: 1.25;
+}
+
+.arcade-button-primary {
+    border-color: #128e44;
+    background: #128e44;
+    color: #fff;
+    font-weight: 700;
+}
+
+.arcade-button-ghost {
+    background: transparent;
+    color: #000;
+}
+
+.arcade-tag {
+    border: 1px solid #000;
+    border-radius: 9999px;
+    padding: 2px 8px;
+    font-size: 10px;
+    line-height: 1.5;
+}
+
+.arcade-checkerboard {
+    background-color: #f3e5df;
+    background-image: linear-gradient(45deg, #000 25%, transparent 25%, transparent 75%, #000 75%), linear-gradient(45deg, #000 25%, transparent 25%, transparent 75%, #000 75%);
+    background-position: 0 0, 24px 24px;
+    background-size: 48px 48px;
 }
 
 /* =========================================

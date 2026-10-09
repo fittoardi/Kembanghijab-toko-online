@@ -1,4 +1,20 @@
-@php($title = 'Checkout')
-@php($description = 'Almost there. Choose your delivery address and payment method to complete your order.')
-@php($cards = [['01','Delivery address','Add your preferred address'],['02','Shipping method','Regular delivery · Rp15.000'],['03','Payment','Secure payment powered by Tripay']])
-@include('pages.customer.template')
+@extends('layouts.app')
+
+@section('title', 'Checkout — Kembang Hijab')
+
+@section('content')
+    <section class="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
+        <div class="flex items-end justify-between gap-4 border-b border-black pb-6"><div><p class="text-xs font-bold uppercase tracking-[.2em] text-[#faa21f]">Secure checkout</p><h1 class="mt-3 text-4xl font-bold uppercase">Almost yours.</h1></div><a href="{{ route('cart.index') }}" class="text-sm font-bold uppercase hover:underline">Back to cart</a></div>
+
+        <form method="POST" action="{{ route('checkout.store') }}" class="mt-8 grid gap-8 lg:grid-cols-[1fr_320px]">
+            @csrf
+            <div class="space-y-5">
+                <section class="arcade-card"><div class="flex items-center justify-between"><h2 class="text-lg font-bold uppercase">01. Delivery address</h2><span class="arcade-tag">Required</span></div><div class="mt-5 grid gap-4 sm:grid-cols-2"><label class="text-sm">Recipient name<input name="name" value="{{ old('name') }}" required class="mt-2 w-full border border-black bg-[#f3e5df] px-3 py-3" autocomplete="name"></label><label class="text-sm">Phone<input name="phone" value="{{ old('phone') }}" required class="mt-2 w-full border border-black bg-[#f3e5df] px-3 py-3" autocomplete="tel"></label><label class="text-sm sm:col-span-2">Full address<textarea name="address" rows="4" required class="mt-2 w-full resize-none border border-black bg-[#f3e5df] px-3 py-3" autocomplete="street-address">{{ old('address') }}</textarea></label></div>@foreach(['name','phone','address'] as $field) @error($field)<p class="mt-2 text-sm text-red-700">{{ $message }}</p>@enderror @endforeach</section>
+                <section class="arcade-card"><h2 class="text-lg font-bold uppercase">02. Shipping</h2><label class="mt-5 flex cursor-pointer items-start gap-3 border border-black p-4"><input type="radio" checked name="shipping" value="regular" class="mt-1"><span><strong class="block uppercase">Regular delivery</strong><span class="text-sm text-[#737373]">JNE / J&T · 2-4 business days · Rp15.000</span></span></label></section>
+                <section class="arcade-card"><h2 class="text-lg font-bold uppercase">03. Payment</h2><div class="mt-5 grid gap-2 sm:grid-cols-2">@foreach($paymentChannels as $channel)<label class="flex cursor-pointer items-center gap-3 border border-[#e5e7eb] p-4 has-[:checked]:border-black"><input type="radio" name="payment" value="{{ $channel }}" @checked(old('payment', 'Bank transfer') === $channel)><span class="text-sm uppercase">{{ $channel }}</span></label>@endforeach</div>@error('payment')<p class="mt-2 text-sm text-red-700">{{ $message }}</p>@enderror</section>
+                <section class="arcade-card"><h2 class="text-lg font-bold uppercase">04. Review order</h2><p class="mt-4 text-sm leading-6 text-[#737373]">Your order is reserved when you place it. Payment instructions will appear on the order page.</p><button class="arcade-button arcade-button-primary mt-6 w-full uppercase" type="submit">Place order</button></section>
+            </div>
+            <aside class="arcade-card h-fit lg:sticky lg:top-4"><h2 class="text-lg font-bold uppercase">Order summary</h2><div class="mt-5 space-y-4">@foreach($cart as $item)<div class="flex gap-3"><img src="{{ $item['image'] }}" alt="{{ $item['name'] }}" width="56" height="70" class="h-16 w-12 object-cover"><div class="min-w-0 flex-1"><p class="truncate text-sm font-bold uppercase">{{ $item['name'] }}</p><p class="text-xs text-[#737373]">{{ $item['quantity'] }} x Rp{{ number_format($item['price'], 0, ',', '.') }}</p></div><span class="text-sm">Rp{{ number_format($item['price'] * $item['quantity'], 0, ',', '.') }}</span></div>@endforeach</div><div class="mt-6 border-t border-black pt-4 text-sm"><div class="flex justify-between"><span>Subtotal</span><span>Rp{{ number_format($subtotal, 0, ',', '.') }}</span></div><div class="mt-2 flex justify-between"><span>Shipping</span><span>Rp{{ number_format($shipping, 0, ',', '.') }}</span></div><div class="mt-4 flex justify-between text-lg font-bold"><span>Total</span><span>Rp{{ number_format($subtotal + $shipping, 0, ',', '.') }}</span></div></div></aside>
+        </form>
+    </section>
+@endsection

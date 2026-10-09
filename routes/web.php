@@ -17,12 +17,20 @@ Route::get('/reviews', [StorefrontController::class, 'reviews'])->name('reviews.
 Route::get('/chat', [StorefrontController::class, 'chat'])->name('chat.index');
 Route::post('/chat', [StorefrontController::class, 'submitChat'])->name('chat.submit');
 
-Route::view('/cart', 'pages.customer.cart')->name('cart.index');
-Route::view('/checkout', 'pages.customer.checkout')->name('checkout.index');
-Route::view('/wishlist', 'pages.customer.wishlist')->name('wishlist.index');
-Route::view('/profile', 'pages.customer.profile')->name('profile.index');
-Route::view('/orders', 'pages.customer.orders')->name('orders.index');
-Route::view('/addresses', 'pages.customer.addresses')->name('addresses.index');
+Route::get('/cart', [StorefrontController::class, 'cart'])->name('cart.index');
+Route::post('/cart/items', [StorefrontController::class, 'addToCart'])->name('cart.items.store');
+Route::patch('/cart/items/{slug}', [StorefrontController::class, 'updateCart'])->name('cart.items.update');
+Route::delete('/cart/items/{slug}', [StorefrontController::class, 'removeFromCart'])->name('cart.items.destroy');
+Route::get('/checkout', [StorefrontController::class, 'checkout'])->name('checkout.index');
+Route::post('/checkout', [StorefrontController::class, 'placeOrder'])->name('checkout.store');
+Route::get('/wishlist', [StorefrontController::class, 'wishlist'])->name('wishlist.index');
+Route::post('/wishlist/toggle', [StorefrontController::class, 'toggleWishlist'])->name('wishlist.toggle');
+Route::get('/profile', [StorefrontController::class, 'profile'])->name('profile.index');
+Route::get('/orders', [StorefrontController::class, 'orders'])->name('orders.index');
+Route::get('/orders/{number}', [StorefrontController::class, 'order'])->name('orders.show');
+Route::get('/orders/{number}/payment', [StorefrontController::class, 'payment'])->name('payments.show');
+Route::get('/addresses', [StorefrontController::class, 'addresses'])->name('addresses.index');
+Route::post('/addresses', [StorefrontController::class, 'storeAddress'])->name('addresses.store');
 Route::view('/help', 'pages.customer.help')->name('help.index');
 Route::view('/login', 'auth.login')->name('login');
 Route::view('/register', 'auth.register')->name('register');
